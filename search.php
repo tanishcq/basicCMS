@@ -14,9 +14,15 @@
             <!-- Blog Entries Column -->
             <div class="col-md-8">
               <?php
-                $query = "select * from posts";
-                $data = mysqli_query($con, $query);
-                while($row = mysqli_fetch_assoc($data))
+ 
+                if(isset($_POST['btn_search'])) {
+                     $search = $_POST['search'];
+                    $sql = "select * from posts where posts_tags like '%$search%'";
+                    $result = mysqli_query($con, $sql);
+                  if(mysqli_num_rows($result)){
+                    
+
+                while($row = mysqli_fetch_assoc($result))
                 {
                   $post_title = $row['post_title'];
                   $post_author = $row['post_author'];
@@ -52,7 +58,11 @@
            
           <?php
           	}
-            
+           }
+                  else {
+                    echo "<h2> Record not found </h2>";
+         }
+
            ?>
            </div>
 
