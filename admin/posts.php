@@ -1,6 +1,6 @@
 <?php require_once ("./admin_includes/header.php"); ?>
 
-<bod>
+<body>
 
     <div id="wrapper">
 

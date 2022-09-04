@@ -43,6 +43,17 @@
     $Post_date=date('Y-m-d');
     $Post_comment=4;
 
+    if(empty($Post_Image))  
+    {
+      $query = "select * from post_id='$Post_ID'";
+      $result = mysqli_query($con, $query);
+
+      while($row = mysqli_fetch_assoc($result))
+      {
+        $Post_Image = $row['post_img'];
+      }
+    }
+
     $sql="UPDATE posts SET post_cat_id='$Post_Cat_id',post_title='$Post_Title',post_author='$Post_Author',post_date='$Post_date',post_img='$Post_image',post_content='$Post_Content',post_tags='$Post_Tags',post_comment_count='$Post_comment',post_status ='$Post_Status' WHERE post_id=$pid";
     $result=mysqli_query($con,$sql);
     

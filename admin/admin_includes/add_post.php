@@ -11,8 +11,8 @@
   if(isset($_POST['btn_add_post']))
   {
     $Post_Title=$_POST['post_title'];
-    $Post_Autor=$_POST['post_cat_id'];
-    $Post_Cat_id=$_POST['post_author'];
+    $Post_Author=$_POST['post_author'];
+    $Post_Cat_id=$_POST['cat_name'];
     $Post_Status=$_POST['post_status'];
     
     /*this does not work*/
@@ -60,13 +60,20 @@
                   
                  
                             </div>
-          <div class="container-fluid">
-
-             
-                      <label>Post Category ID</label>
-                      <input type="text" name="post_cat_id" placeholders="Post Category ID" class="form-control mb-2">
-                        
-              </div>
+                  <select name="cat_name" id="" class="form-control">
+                  <?php
+                        $sql = "select * from categories";
+                        $value = mysqli_query($con, $sql);
+                        while($row = mysqli_fetch_assoc($value))
+                        {
+                                $cat_id = $row['cat_id'];
+                                $cat_title = $row['cat_title'];
+                  ?>
+                        <option value="<?php echo $cat_id ?>"><?php echo $cat_title ?></option>
+                  <?php
+                        }
+                  ?>
+                  </select>
                    <div class="container-fluid">
 
              
